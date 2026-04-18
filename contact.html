@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact · Feelix</title>
+  <style>
+    /* ----- SIMPLE · WHITE · CLEAN (consistent) ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffffff;
+      color: #1e1e2a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .contact-card {
+      max-width: 500px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 2.2rem 2rem;
+      box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #edf2f7;
+      transition: box-shadow 0.2s;
+    }
+
+    .contact-card:hover {
+      box-shadow: 0 24px 40px -12px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .back-link {
+      text-decoration: none;
+      font-size: 1.8rem;
+      line-height: 1;
+      color: #64748b;
+      transition: color 0.15s;
+      margin-right: 4px;
+    }
+
+    .back-link:hover {
+      color: #0f172a;
+    }
+
+    .card-header h2 {
+      font-size: 1.9rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+    }
+
+    /* intro */
+    .intro-text {
+      color: #475569;
+      margin-bottom: 24px;
+      font-size: 1rem;
+      border-left: 3px solid #10b981;
+      padding-left: 16px;
+    }
+
+    /* contact methods */
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin: 28px 0 20px;
+    }
+
+    .method-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 16px;
+      background: #fafcff;
+      border-radius: 20px;
+      border: 1px solid #eef2f6;
+      transition: all 0.15s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .method-item:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+
+    .method-icon {
+      font-size: 2rem;
+      width: 44px;
+      text-align: center;
+    }
+
+    .method-info {
+      flex: 1;
+    }
+
+    .method-label {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .method-value {
+      color: #475569;
+      font-size: 0.9rem;
+    }
+
+    /* simple contact form (optional) */
+    .contact-form {
+      margin-top: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 550;
+      margin-bottom: 6px;
+      color: #334155;
+      font-size: 0.9rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 18px;
+      background: #fafcff;
+      font-size: 0.95rem;
+      transition: 0.15s;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: #10b981;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.06);
+    }
+
+    .btn-send {
+      background: #10b981;
+      color: white;
+      font-weight: 600;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(16, 185, 129, 0.12);
+      transition: 0.15s;
+      border: 1px solid #05966940;
+      width: 100%;
+    }
+
+    .btn-send:hover {
+      background: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+    }
+
+    .footnote {
+      text-align: center;
+      margin-top: 24px;
+      color: #64748b;
+      font-size: 0.8rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1.5px solid #edf2f7;
+      margin: 20px 0 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="contact-card">
+  
+  <div class="card-header">
+    <a href="index.html" class="back-link" title="Back to home">←</a>
+    <h2>contact us</h2>
+  </div>
+
+  <div class="intro-text">
+    💬 Have questions about Feelix? We're here to help. Reach out anytime.
+  </div>
+
+  <!-- QUICK CONTACT METHODS -->
+  <div class="contact-methods">
+    <a href="mailto:hello@feelix.tech" class="method-item">
+      <span class="method-icon">📧</span>
+      <div class="method-info">
+        <div class="method-label">Email</div>
+        <div class="method-value">hello@feelix.tech</div>
+      </div>
+    </a>
+
+    <a href="https://wa.me/918133909528" target="_blank" class="method-item">
+      <span class="method-icon">💬</span>
+      <div class="method-info">
+        <div class="method-label">WhatsApp</div>
+        <div class="method-value">+91 81339 09528</div>
+      </div>
+    </a>
+
+    <div class="method-item" style="cursor: default; background: transparent; border: none; box-shadow: none; transform: none;" onclick="void(0)">
+      <span class="method-icon">📞</span>
+      <div class="method-info">
+        <div class="method-label">Phone (business hours)</div>
+        <div class="method-value">+91 81339 09528</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SIMPLE MESSAGE FORM (just for show, can be connected later) -->
+  <div class="contact-form">
+    <div class="form-group">
+      <label>Your name</label>
+      <input type="text" class="form-control" placeholder="Alex" id="contactName">
+    </div>
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" class="form-control" placeholder="alex@email.com" id="contactEmail">
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea class="form-control" rows="3" placeholder="I'd like to know more about Feelix..." id="contactMessage" style="resize: vertical;"></textarea>
+    </div>
+    
+    <button class="btn-send" onclick="sendMessage()">
+      ✉️ Send message
+    </button>
+    <p style="font-size: 0.8rem; color: #6b7a8f; margin-top: 10px; text-align: center;">
+      (Opens email client — we'll reply within 24h)
+    </p>
+  </div>
+
+  <div class="footnote">
+    Feelix · your desk buddy · support available 7 days
+  </div>
+</div>
+
+<script>
+  // simple function to compose email via mailto
+  function sendMessage() {
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+    
+    let subject = 'Question about Feelix';
+    let body = '';
+    
+    if (name) body += `Name: ${name}\n`;
+    if (email) body += `Email: ${email}\n`;
+    body += `\nMessage:\n${message || '(no message)'}`;
+    
+    const mailtoLink = `mailto:hello@feelix.tech?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // open default email client
+    window.location.href = mailtoLink;
+    
+    // optional feedback
+    const btn = document.querySelector('.btn-send');
+    btn.textContent = '✓ Opening email...';
+    setTimeout(() => {
+      btn.textContent = '✉️ Send message';
+    }, 1500);
+  }
+
+  // optional: allow Enter to send? not necessary, but can be added.
+  // Prefill name if stored? not needed.
+</script>
+
+</body>
+</html>
