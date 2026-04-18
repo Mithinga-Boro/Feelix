@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment · Feelix</title>
+  <style>
+    /* ----- SIMPLE · WHITE · CLEAN (matches index & order) ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffffff;
+      color: #1e1e2a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .payment-card {
+      max-width: 440px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 2.2rem 2rem;
+      box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #edf2f7;
+      transition: box-shadow 0.2s;
+    }
+
+    .payment-card:hover {
+      box-shadow: 0 24px 40px -12px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .back-link {
+      text-decoration: none;
+      font-size: 1.8rem;
+      line-height: 1;
+      color: #64748b;
+      transition: color 0.15s;
+      margin-right: 4px;
+    }
+
+    .back-link:hover {
+      color: #0f172a;
+    }
+
+    .card-header h2 {
+      font-size: 1.9rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+    }
+
+    /* order summary box */
+    .summary-box {
+      background: #f9fbfd;
+      border-radius: 24px;
+      padding: 1.5rem 1.4rem;
+      margin-bottom: 28px;
+      border: 1px solid #eef2f6;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 1rem;
+    }
+
+    .summary-row.total {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 2px dashed #dce3ec;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #0f172a;
+    }
+
+    .total-amount {
+      color: #10b981;
+      font-weight: 800;
+    }
+
+    /* UPI section */
+    .upi-section {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .qr-container {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 20px 10px 12px;
+      margin: 18px 0;
+      border: 1.5px solid #e9edf2;
+    }
+
+    .qr-container img {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 18px;
+      background: white;
+      padding: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .qr-note {
+      color: #475569;
+      font-size: 0.9rem;
+      margin: 12px 0 6px;
+      background: #f1f5fe;
+      padding: 10px 16px;
+      border-radius: 40px;
+      border: 1px solid #d9e2ef;
+    }
+
+    /* buttons */
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn-primary {
+      background: #10b981;
+      color: white;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 1rem;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(16, 185, 129, 0.12);
+      transition: all 0.2s ease;
+      border: 1px solid #05966940;
+      letter-spacing: -0.2px;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background: #059669;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 26px rgba(16, 185, 129, 0.25);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: #334155;
+      font-weight: 550;
+      font-size: 1rem;
+      padding: 0.9rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.15s;
+      width: 100%;
+    }
+
+    .btn-secondary:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    .footnote {
+      text-align: center;
+      margin-top: 20px;
+      color: #64748b;
+      font-size: 0.8rem;
+    }
+
+    .cod-message {
+      background: #f0fdf4;
+      border-radius: 20px;
+      padding: 16px;
+      text-align: center;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      font-weight: 500;
+      margin: 16px 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="payment-card">
+  
+  <div class="card-header">
+    <a href="order.html" class="back-link" title="Back to order">←</a>
+    <h2>payment</h2>
+  </div>
+
+  <!-- ORDER SUMMARY (dynamically filled) -->
+  <div class="summary-box" id="orderSummary">
+    <!-- filled by JS -->
+  </div>
+
+  <!-- UPI SECTION (visible only if payment method is UPI) -->
+  <div id="upiBlock" style="display: none;">
+    <div class="upi-section">
+      <div class="qr-container">
+        <img src="UPI.jpeg" alt="UPI QR Code" id="qrImage">
+        <p style="margin-top: 8px; color: #334155;">Scan to pay ₹<span id="totalAmountSpan">1000</span></p>
+      </div>
+      <div class="qr-note">
+        📸 After payment, send screenshot on WhatsApp to confirm.
+      </div>
+    </div>
+  </div>
+
+  <!-- COD MESSAGE (visible only if COD) -->
+  <div id="codBlock" style="display: none;">
+    <div class="cod-message">
+      🚚 Pay when you receive · No advance payment needed
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="button-group">
+    <button class="btn-primary" id="confirmOrderBtn" onclick="confirmAndSend()">
+      ✅ Confirm order
+    </button>
+    <button class="btn-secondary" onclick="goBackToOrder()">
+      ← Edit order
+    </button>
+  </div>
+
+  <div class="footnote">
+    ✦ secure · 128-bit encryption ✦
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ----- READ DATA FROM LOCALSTORAGE (support both key sets) -----
+    let customerName = localStorage.getItem('feelix_customer_name') || localStorage.getItem('name') || 'Guest';
+    let quantity = parseInt(localStorage.getItem('feelix_quantity') || localStorage.getItem('quantity') || '1');
+    let paymentMethod = localStorage.getItem('feelix_payment_method') || localStorage.getItem('payment') || 'UPI';
+    
+    // Ensure quantity is valid number
+    if (isNaN(quantity) || quantity < 1) quantity = 1;
+    
+    const UNIT_PRICE = 1000;
+    const totalAmount = quantity * UNIT_PRICE;
+    
+    // Update total span if needed
+    const totalSpan = document.getElementById('totalAmountSpan');
+    if (totalSpan) totalSpan.textContent = totalAmount;
+    
+    // ----- DISPLAY ORDER SUMMARY -----
+    const summaryDiv = document.getElementById('orderSummary');
+    summaryDiv.innerHTML = `
+      <div class="summary-row"><span>👤 Name</span><span>${escapeHtml(customerName)}</span></div>
+      <div class="summary-row"><span>📦 Quantity</span><span>${quantity}</span></div>
+      <div class="summary-row"><span>💳 Payment</span><span>${paymentMethod === 'COD' ? 'Cash on Delivery' : 'UPI'}</span></div>
+      <div class="summary-row total"><span>Total</span><span class="total-amount">₹${totalAmount}</span></div>
+    `;
+    
+    // ----- SHOW/HIDE SECTIONS BASED ON PAYMENT -----
+    const upiBlock = document.getElementById('upiBlock');
+    const codBlock = document.getElementById('codBlock');
+    
+    if (paymentMethod === 'COD') {
+      upiBlock.style.display = 'none';
+      codBlock.style.display = 'block';
+    } else {
+      upiBlock.style.display = 'block';
+      codBlock.style.display = 'none';
+    }
+    
+    // simple escape for innerHTML
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+    
+    // ----- CONFIRM & SEND TO WHATSAPP -----
+    window.confirmAndSend = function() {
+      // Build message
+      const message = `✨ *New Feelix Order*%0A%0A` +
+        `👤 Name: ${customerName}%0A` +
+        `📦 Quantity: ${quantity}%0A` +
+        `💰 Total: ₹${totalAmount}%0A` +
+        `💳 Payment: ${paymentMethod === 'COD' ? 'Cash on Delivery' : 'UPI'}%0A%0A` +
+        (paymentMethod === 'UPI' ? `📸 *Please send payment screenshot*` : `🚚 COD order confirmed`);
+      
+      const phone = "918133909528";  // same as original
+      const waUrl = `https://wa.me/${phone}?text=${message}`;
+      
+      // Open WhatsApp
+      window.open(waUrl, '_blank');
+      
+      // Optional: show a small toast-like feedback
+      const btn = document.getElementById('confirmOrderBtn');
+      btn.textContent = '✓ Opening WhatsApp...';
+      setTimeout(() => {
+        btn.textContent = '✅ Confirm order';
+      }, 1500);
+    };
+    
+    // ----- GO BACK TO ORDER PAGE (preserve data) -----
+    window.goBackToOrder = function() {
+      window.location.href = 'order.html';
+    };
+    
+    // Also make sure the QR image exists (if UPI.jpeg missing, it shows alt)
+    // Provide fallback in case UPI.jpeg is not found — but we keep as is.
+    
+    // If UPI.jpeg fails to load, we can show a placeholder (optional)
+    const qrImg = document.getElementById('qrImage');
+    if (qrImg) {
+      qrImg.onerror = function() {
+        // create a simple canvas fallback with text "UPI QR"
+        this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f8fafc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='18' fill='%231e293b'%3E📱 UPI QR%3C/text%3E%3C/svg%3E";
+        this.style.padding = '10px';
+      };
+    }
+  })();
+</script>
+
+<!-- ensure button works even if script fails -->
+<noscript>
+  <div style="color:red;">JavaScript required for payment flow.</div>
+</noscript>
+
+</body>
+</html>
