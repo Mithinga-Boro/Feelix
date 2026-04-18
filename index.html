@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feelix · simple desk buddy</title>
+  <style>
+    /* ----- SIMPLE · CLEAN · WHITE BACKGROUND ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffffff;
+      color: #1e1e2a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* fallback for Inter (system fonts are fine) */
+    @supports (font-variation-settings: normal) {
+      body { font-family: 'Inter var', sans-serif; }
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    /* ----- HEADER (light & airy) ----- */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0 1.8rem;
+      border-bottom: 1px solid #eaeef2;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .brand-name {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #1f2937;
+    }
+
+    .tag {
+      background: #f3f6f9;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #3b4a5c;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* ----- CARD STYLE (subtle shadow, white) ----- */
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem 1.8rem;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
+      border: 1px solid #f0f3f7;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    /* ----- HERO ----- */
+    .hero {
+      text-align: center;
+    }
+
+    .hero-avatar {
+      margin-bottom: 24px;
+    }
+
+    .hero-avatar img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 32px;
+      background: #f9fafb;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+      border: 2px solid #ffffff;
+      transition: transform 0.15s;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .hero .accent {
+      color: #10b981;  /* fresh green accent */
+      background: #e9f9f1;
+      padding: 0 6px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 540px;
+      margin: 0 auto;
+      color: #4b5563;
+    }
+
+    /* ----- SECTION TITLE ----- */
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.4rem;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .title-icon {
+      font-size: 2rem;
+    }
+
+    /* ----- FEATURE LIST (clean grid) ----- */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 18px;
+    }
+
+    .feature-tile {
+      background: #fafcff;
+      border-radius: 22px;
+      padding: 1.5rem 0.5rem;
+      text-align: center;
+      border: 1px solid #edf2f7;
+      transition: all 0.15s;
+    }
+
+    .feature-tile:hover {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      box-shadow: 0 8px 14px -6px rgba(0, 0, 0, 0.05);
+    }
+
+    .feature-emoji {
+      font-size: 2.6rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .feature-name {
+      font-weight: 550;
+      color: #1e293b;
+    }
+
+    /* ----- PERFECT FOR (chips) ----- */
+    .usecase-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      justify-content: center;
+    }
+
+    .chip-light {
+      background: #f3f6fc;
+      padding: 10px 22px;
+      border-radius: 60px;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #1e293b;
+      border: 1px solid #dee6ed;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: 0.1s;
+    }
+
+    .chip-light:hover {
+      background: #e6edf6;
+      border-color: #b9c7da;
+    }
+
+    /* ----- BUTTON (clean, green, friendly) ----- */
+    .btn-primary {
+      display: inline-block;
+      background: #10b981;
+      color: white;
+      font-weight: 600;
+      font-size: 1.25rem;
+      padding: 1rem 2.8rem;
+      border: none;
+      border-radius: 60px;
+      box-shadow: 0 8px 18px rgba(16, 185, 129, 0.15);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid #05966940;
+      letter-spacing: -0.2px;
+      text-decoration: none;
+      margin: 16px 0 8px;
+    }
+
+    .btn-primary:hover {
+      background: #059669;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 26px rgba(16, 185, 129, 0.25);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 12px rgba(16, 185, 129, 0.2);
+    }
+
+    /* ----- text helpers ----- */
+    .text-center {
+      text-align: center;
+    }
+
+    .subtle {
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: #eef2f6;
+      margin: 24px 0 16px;
+    }
+
+    .footer-note {
+      color: #6b7a8f;
+      font-size: 0.9rem;
+      margin-top: 28px;
+      border-top: 1px solid #e9edf2;
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    /* responsive adjustments */
+    @media (max-width: 540px) {
+      .container { padding: 1.5rem 1rem 2rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .brand-name { font-size: 1.6rem; }
+      .card { padding: 1.5rem 1.2rem; }
+    }
+
+    /* simple link style (if any) */
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- simple header -->
+  <div class="top-bar">
+    <div class="brand">
+      <span class="brand-icon">🤖</span>
+      <span class="brand-name">Feelix</span>
+    </div>
+    <div class="tag">desk companion</div>
+  </div>
+
+  <!-- HERO (white card) -->
+  <section class="card hero">
+    <div class="hero-avatar">
+      <img src="bot.jpeg" alt="Feelix robot face">
+    </div>
+    <h1>
+      your <span class="accent">emotional</span><br> desk buddy
+    </h1>
+    <p>
+      Tiny, touch‑responsive, and full of charm. Feelix brings warmth to your everyday workspace.
+    </p>
+  </section>
+
+  <!-- ABOUT (light style) -->
+  <section class="card">
+    <div class="section-title">
+      <span class="title-icon">✨</span> about feelix
+    </div>
+    <p style="font-size: 1.1rem; color: #334155; margin-bottom: 14px;">
+      Feelix is a smart mini robot that reacts when you touch it — showing happiness, sleepiness, surprise. 
+      It also displays the time and adds a playful spark to your desk.
+    </p>
+    <p style="font-style: italic; color: #0f766e; font-weight: 500; border-left: 4px solid #10b981; padding-left: 20px;">
+      Not just a gadget… it makes your space feel alive ✨
+    </p>
+  </section>
+
+  <!-- FEATURES (clean grid) -->
+  <section class="card">
+    <div class="section-title">
+      <span class="title-icon">⚡</span> features
+    </div>
+    <div class="feature-grid">
+      <div class="feature-tile">
+        <span class="feature-emoji">😊😴😲</span>
+        <span class="feature-name">Touch emotions</span>
+      </div>
+      <div class="feature-tile">
+        <span class="feature-emoji">⏰</span>
+        <span class="feature-name">Time display</span>
+      </div>
+      <div class="feature-tile">
+        <span class="feature-emoji">👀✨</span>
+        <span class="feature-name">Animated face</span>
+      </div>
+      <div class="feature-tile">
+        <span class="feature-emoji">🔋</span>
+        <span class="feature-name">USB‑C recharge</span>
+      </div>
+      <div class="feature-tile">
+        <span class="feature-emoji">🧸</span>
+        <span class="feature-name">Compact design</span>
+      </div>
+      <div class="feature-tile">
+        <span class="feature-emoji">🎨</span>
+        <span class="feature-name">Aesthetic matte</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERFECT FOR (chips) -->
+  <section class="card text-center">
+    <div class="section-title" style="justify-content: center;">
+      <span class="title-icon">🎯</span> perfect for
+    </div>
+    <div class="usecase-wrapper">
+      <span class="chip-light">📚 Study tables</span>
+      <span class="chip-light">🎁 Gifts</span>
+      <span class="chip-light">🖥️ Desk decor</span>
+      <span class="chip-light">🌙 Night companion</span>
+      <span class="chip-light">💼 Home office</span>
+    </div>
+  </section>
+
+  <!-- CTA + ORDER BUTTON (clean connection to order.html) -->
+  <section class="card text-center" style="padding-bottom: 2.2rem;">
+    <p style="font-size: 1.3rem; font-weight: 450; margin-bottom: 10px; color: #1e293b;">
+      Bring your desk to life today ✨
+    </p>
+    
+    <!-- ✦ BUTTON WORKS: redirects to order.html ✦ -->
+    <button class="btn-primary" onclick="window.location.href='order.html'">
+      ⚡ Get Yours Now
+    </button>
+    
+    <div class="divider"></div>
+    <p class="subtle" style="margin-top: 6px;">
+      free shipping • secure payment • 30-day returns
+    </p>
+  </section>
+
+  <!-- tiny footer -->
+  <div class="footer-note">
+    <span>Feelix · your desk buddy</span>
+    <span>hello@feelix.tech</span>
+  </div>
+</div>
+
+<!-- (no extra JS needed — the button navigates to order.html) -->
+<script>
+  // ensure everything works; button uses inline onclick.
+  console.log('✨ Feelix — simple white design ready. Connect to order.');
+</script>
+
+</body>
+</html>
